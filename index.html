@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -69,10 +68,10 @@
         })
         .then(response => response.text())
         .then(data => {
-          log.textContent = `✅ ${task} completed:\n\n` + data;
+          log.textContent = `✅ ${task} completed:\\n\\n` + data;
         })
         .catch(err => {
-          log.textContent = `❌ Error running ${task}:\n\n` + err;
+          log.textContent = `❌ Error running ${task}:\\n\\n` + err;
         });
       }
     </script>
