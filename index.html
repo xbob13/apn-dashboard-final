@@ -22,17 +22,59 @@
         border-radius: 0.5rem;
         margin-bottom: 1rem;
       }
+      button {
+        margin: 0.5rem 0;
+        padding: 0.75rem 1.5rem;
+        background: #38bdf8;
+        color: #0f172a;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0ea5e9;
+      }
+      .log {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #1e293b;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        white-space: pre-wrap;
+      }
     </style>
   </head>
   <body>
-    <h1>✅ AutoProfit Nexus Dashboard (Final)</h1>
+    <h1>✅ AutoProfit Nexus Dashboard</h1>
     <div class="status">
-      <p><strong>Status:</strong> All systems operational</p>
-      <p><strong>Blogs:</strong> Online</p>
-      <p><strong>YouTube:</strong> Publishing</p>
-      <p><strong>Crypto Bot:</strong> Trading live</p>
-      <p><strong>AI Tools:</strong> Monetizing</p>
+      <p><strong>Status:</strong> All systems go</p>
+      <p><strong>Backend:</strong> Connected</p>
     </div>
-    <p>This is the final hosted dashboard. Everything should now work smoothly.</p>
+
+    <button onclick="trigger('blogs')">Run Blog Automation</button>
+    <button onclick="trigger('youtube')">Run YouTube Automation</button>
+    <button onclick="trigger('crypto')">Run Crypto Bot</button>
+    <button onclick="trigger('tools')">Deploy AI Tools</button>
+
+    <div class="log" id="log">📝 Logs will appear here...</div>
+
+    <script>
+      function trigger(task) {
+        const log = document.getElementById('log');
+        log.textContent = `🔄 Running ${task}...`;
+
+        fetch(`https://apn-backend-server-final.onrender.com/run/${task}`, {
+          method: 'POST'
+        })
+        .then(response => response.text())
+        .then(data => {
+          log.textContent = `✅ ${task} completed:\n\n` + data;
+        })
+        .catch(err => {
+          log.textContent = `❌ Error running ${task}:\n\n` + err;
+        });
+      }
+    </script>
   </body>
 </html>
